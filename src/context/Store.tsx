@@ -21,7 +21,7 @@ export type Order = {
     address: string;
     payment: string;
 };
-const initial: Line[] = ['wireless-headphones', 'eau-de-parfum', 'classic-sneakers'].map((id, i) => ({ key: id, id, quantity: 1, color: i === 0 ? 'Black' : i === 2 ? 'White' : '', size: i === 1 ? '100ml' : i === 2 ? '42' : '' }));
+const initial: Line[] = [];
 type State = {
     cart: Line[];
     wishlist: string[];
@@ -42,7 +42,14 @@ export function StoreProvider({ children }: {
     const [ready, setReady] = useState(false);
     const [toast, setToast] = useState('');
     useEffect(() => { try {
-        const saved = JSON.parse(localStorage.getItem('shopfinity-store-v2') || 'null');
+        const current = localStorage.getItem('shopfinity-store-v3');
+        const saved = JSON.parse(current || localStorage.getItem('shopfinity-store-v2') || 'null');
+        // v2 seeded one unit under a bare product ID. Keep only shopper-added units.
+        if (saved && !current) {
+            const seeded = ['wireless-headphones', 'eau-de-parfum', 'classic-sneakers'];
+            saved.cart = (saved.cart || []).map((line: Line) => seeded.includes(line.id) && line.key === line.id ? { ...line, quantity: line.quantity - 1 } : line).filter((line: Line) => line.quantity > 0);
+            if (!saved.cart.length) saved.promo = '';
+        }
         if (saved) {
             setState({ ...defaults, ...saved, cart: (saved.cart || []).filter((l: Line) => findItem(l.id) && Number.isInteger(l.quantity) && l.quantity > 0) });
         }
@@ -50,7 +57,7 @@ export function StoreProvider({ children }: {
     catch { } setReady(true); }, []);
     useEffect(() => { if (ready) {
         try {
-            localStorage.setItem('shopfinity-store-v2', JSON.stringify(state));
+            localStorage.setItem('shopfinity-store-v3', JSON.stringify(state));
         }
         catch { }
     } }, [state, ready]);

@@ -1,7 +1,0 @@
-import React from 'react';
-import { MotionPage } from '@/components/MotionUI';
-import './globals.css';
-import { StoreProvider } from '@/context/Store';
-import { Header, Footer } from '@/components/StoreUI';
-export const metadata = { title: 'E Shop Online Usa — Everyday Essentials in Brooklyn', description: 'E Shop Online Usa: a local Brooklyn store offering a variety of everyday products. Visit us Monday–Friday for friendly, reliable service.', icons: { icon: '/assets/logo.svg', apple: '/assets/logo.svg', shortcut: '/assets/logo.svg' }, openGraph: { title: 'E Shop Online Usa', description: 'Local Brooklyn store offering everyday products and attentive in-person service.', images: ['/assets/logo.svg'] } };
-export default function RootLayout({children}:{children:React.ReactNode}) { return <html lang="en"><head><meta name="robots" content="noindex, nofollow, noarchive"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;600;700&display=swap"/></head><body><div id="unifotec-demo-banner" style={{ position: "relative", zIndex: 9999, background: "#111", color: "#fff", font: "13px/1.4 Arial, sans-serif", textAlign: "center", padding: "8px 12px" }}>Unofficial demonstration website created by Unifotec for E Shop Online Usa. Not affiliated with or endorsed by the business. Payments, checkout and orders are disabled.</div><StoreProvider><Header/><MotionPage>{children}</MotionPage><Footer/></StoreProvider><script src="/demo-guard.js" defer></script></body></html> }

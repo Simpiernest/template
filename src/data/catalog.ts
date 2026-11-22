@@ -23,12 +23,19 @@ export type Item = {
 };
 export const crop = (file: string, x: number, y: number, width: number, height: number, w = 1024, h = 1536): Crop => ({ file, x, y, width, height, w, h });
 const entries = [
-  { id: 'accent-chair', name: 'Accent Chair', category: 'furnishings', price: 20, art: crop('catalog', 258, 945, 160, 98) },
-  { id: 'table-lamp', name: 'Table Lamp', category: 'lighting', price: 25, art: crop('catalog', 835, 945, 160, 98) },
-  { id: 'decorative-bag', name: 'Decorative Bag', category: 'collectibles', price: 30, art: crop('catalog', 450, 715, 160, 104) },
-  { id: 'throw-pillow', name: 'Throw Pillow', category: 'furnishings', price: 35, art: crop('catalog', 258, 945, 160, 98) },
+    { id: 'vintage-hoodie', name: 'Vintage Hoodie', category: 'apparel', price: 35, art: crop('catalog',258,715,160,105) },
+    { id: 'vintage-sneakers', name: 'Retro Sneakers', category: 'vintage', price: 40, art: crop('catalog',835,478,161,105) },
+    { id: 'leather-handbag', name: 'Leather Handbag', category: 'bags', price: 30, art: crop('catalog',450,715,160,105) },
+    { id: 'everyday-hoodie', name: 'Casual Sweatshirt', category: 'vintage', price: 28, art: crop('catalog',258,715,160,105) },
 ];
-export const items: Item[] = entries.map(item => ({...item, old:item.price, rating:0, reviews:"0", description:"Illustrative listing. Actual prices and availability to be supplied by the retailer."}));
-export const categories = [...new Map(entries.map(item => [item.category, {id:item.category,name:item.category[0].toUpperCase()+item.category.slice(1),art:item.art}])).values()];
-export const money = (n:number) => "$"+n.toFixed(2)+" demo";
-export const findItem = (id:string) => items.find(item => item.id===id);
+export const items: Item[] = entries.map(item => ({
+    ...item, old: item.price, rating: 0, reviews: '0',
+    description: 'Sample styling example. The retailer can supply actual products, availability and prices.',
+}));
+export const categories = [
+    { id: 'apparel', name: 'Apparel', art: entries[0].art },
+    { id: 'vintage', name: 'Vintage Styles', art: entries[1].art },
+    { id: 'bags', name: 'Bags & Accessories', art: entries[2].art },
+];
+export const money = (n: number) => '$' + n.toFixed(2) + ' demo';
+export const findItem = (id: string) => items.find(p => p.id === id);

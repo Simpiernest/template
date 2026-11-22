@@ -1,4 +1,4 @@
-export const brandingConfig = { name: 'So Good Beauty Supply', primary: '#004c29' };
+export const brandingConfig = { name: 'Esses Rare Objects D’Art', primary: '#293d35' };
 type AnimationPreferences = {
  hero: { entrance: 'fade-up' | 'none'; carousel: 'crossfade' | 'none'; autoplay: boolean; interval: number };
  productCards: { hover: 'lift-zoom' | 'none'; quickView: boolean; wishlistAnimation: boolean };

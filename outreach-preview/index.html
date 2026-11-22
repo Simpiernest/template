@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Leona Thrift Store · Unifotec concept</title><style>
+:root{--ink:#293d35;--paper:#f6f2e7;--accent:#c4a060;color:var(--ink);background:var(--paper);font:16px system-ui,sans-serif}*{box-sizing:border-box}body{margin:0}a{color:inherit}button{font:inherit;cursor:pointer}header,main,footer{max-width:1120px;margin:auto;padding:0 5vw}header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:1.25rem}header>a{text-decoration:none;font:700 1.3rem Georgia,serif}.notice{text-align:center;background:var(--ink);color:white;padding:.65rem 1rem;font-size:.83rem}.hero{display:grid;grid-template-columns:1.4fr 1fr;background:var(--ink);color:#fff;min-height:350px;overflow:hidden;border-radius:1rem}.hero>div:first-child{padding:clamp(1.6rem,6vw,5rem);align-self:center}.hero h1{font:500 clamp(2.4rem,6.8vw,5.2rem)/.95 Georgia,serif;margin:.35em 0}.hero p{max-width:25rem;line-height:1.6}.art{display:grid;place-items:center;background:var(--accent);min-height:220px;overflow:hidden}.art b{display:grid;place-items:center;background:var(--paper);color:var(--ink);font:500 clamp(3rem,9vw,8rem) Georgia,serif;width:70%;aspect-ratio:1;border-radius:45% 45% 8% 8%;transform:rotate(-9deg);box-shadow:0 20px 45px #1114}.button,button{border:1px solid currentColor;border-radius:999px;padding:.65rem 1rem;background:transparent;color:inherit;text-decoration:none;display:inline-block;font-weight:650}.hero .button{background:var(--paper);color:var(--ink)}h2{font:500 2rem Georgia,serif;margin:2rem 0 1rem}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.card{background:#fff;border-radius:.9rem;padding:1rem;display:grid;gap:.65rem}.card h3,.card p{margin:0}.card h3{font:600 1.23rem Georgia,serif}.tile{min-height:110px;background:var(--paper);border-radius:.6rem;display:grid;place-items:center;font:500 2.4rem Georgia,serif;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.45rem}.visit{padding:1.4rem 0 2rem;line-height:1.55}footer{padding-block:1rem 2rem;font-size:.85rem}dialog{color:var(--ink);border:1px solid var(--ink);border-radius:1rem;width:min(90vw,450px);padding:1.5rem}dialog::backdrop{background:#0008}dialog h2{margin-top:0}li{margin:.6rem 0}li button{margin-left:.5rem;padding:.2rem .5rem}button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(max-width:740px){.hero{grid-template-columns:1fr}.art{display:none}.grid{grid-template-columns:1fr}}
+</style></head><body>
+<div class="notice">Independent storefront concept by Unifotec. Sample products and prices.</div>
+<header><a href="./">Leona Thrift Store</a><button id="basket">Demo cart (<span id="count">0</span>)</button></header><main>
+<section class="hero"><div><small>Eustis, FL</small><h1>Leona Thrift Store</h1><p>Explore how a curated online catalog could showcase secondhand clothing, decor and household finds.</p><a class="button" href="#collection">Browse sample collection</a></div><div class="art" aria-hidden="true"><b>LT</b></div></section>
+<section id="collection"><h2>Sample collection</h2><div class="grid" id="products"></div></section>
+<section class="visit"><h2>Find the shop</h2><p>228-232 W Ardice Ave, Eustis, FL 32726</p><a href="https://www.google.com/maps/search/?api=1&amp;query=Leona%20Thrift%20Store%20228-232%20W%20Ardice%20Ave%2C%20Eustis%2C%20FL%2032726">Open Google Maps</a></section></main>
+<footer>Storefront demonstration. Orders and payments are disabled.</footer>
+<dialog id="panel" aria-labelledby="title"><h2 id="title"></h2><div id="body"></div><form method="dialog"><button>Close</button></form></dialog>
+<script>
+const items=[{"name":"Pre-owned shirt","category":"secondhand clothing","price":18},{"name":"Decorative vase","category":"decor","price":24},{"name":"Kitchen bowl set","category":"household finds","price":32}];
+const panel=document.getElementById("panel");
+const title=document.getElementById("title");
+const body=document.getElementById("body");
+const cart=new Map();
+const money=n=>"$"+n.toFixed(2);
+const el=(tag,value)=>{const element=document.createElement(tag);element.textContent=value;return element;};
+const button=(label,action)=>{const element=el("button",label);element.addEventListener("click",action);return element;};
+function show(heading,...children){title.textContent=heading;body.replaceChildren(...children);if(!panel.open)panel.showModal();}
+function add(item){cart.set(item,(cart.get(item)||0)+1);renderCart();}
+function renderCart(){
+  const total=[...cart].reduce((sum,[item,qty])=>sum+item.price*qty,0);
+  document.getElementById("count").textContent=[...cart.values()].reduce((sum,qty)=>sum+qty,0);
+  const list=document.createElement("ul");
+  for(const [item,quantity] of cart){
+    const row=el("li",item.name+" × "+quantity);
+    row.append(button("Remove one",()=>{if(quantity>1)cart.set(item,quantity-1);else cart.delete(item);renderCart();}));
+    list.append(row);
+  }
+  show("Demo cart",cart.size?list:el("p","Your cart is empty."),el("p","Illustrative subtotal: "+money(total)));
+}
+document.getElementById("basket").addEventListener("click",renderCart);
+items.forEach((item,index)=>{
+  const card=document.createElement("article");card.className="card";
+  const tile=el("div",String(index+1).padStart(2,"0"));tile.className="tile";tile.setAttribute("aria-hidden","true");
+  const actions=document.createElement("div");actions.className="actions";
+  actions.append(button("View details",()=>show(item.name,el("p","An illustrative listing for the "+item.category+" collection. Ask the shop about current availability."),el("p","Sample price: "+money(item.price)),button("Add to demo cart",()=>add(item)))),button("Add to demo cart",()=>add(item)));
+  card.append(tile,el("h3",item.name),el("p",money(item.price)+" sample price"),actions);
+  document.getElementById("products").append(card);
+});
+</script></body></html>

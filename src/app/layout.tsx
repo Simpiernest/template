@@ -3,5 +3,5 @@ import { MotionPage } from '@/components/MotionUI';
 import './globals.css';
 import { StoreProvider } from '@/context/Store';
 import { Header, Footer } from '@/components/StoreUI';
-export const metadata = { title: 'So Good Beauty Supply | Unofficial Storefront Preview', description: 'Independent beauty storefront design preview for a Fort Wayne retailer.', robots: { index: false, follow: false } };
+export const metadata = { title: 'Mag New York City | Unofficial Storefront Preview', description: 'Independent retail storefront design preview for a retailer in New York, NY.', robots: { index: false, follow: false } };
 export default function RootLayout({children}:{children:React.ReactNode}) { return <html lang="en"><body><StoreProvider><Header/><MotionPage>{children}</MotionPage><Footer/></StoreProvider></body></html> }

@@ -1,4 +1,4 @@
-export const brandingConfig = { name: 'Shopfinity', primary: '#004c29' };
+export const brandingConfig = { name: 'Another Vintage Store', primary: '#004c29' };
 type AnimationPreferences = {
  hero: { entrance: 'fade-up' | 'none'; carousel: 'crossfade' | 'none'; autoplay: boolean; interval: number };
  productCards: { hover: 'lift-zoom' | 'none'; quickView: boolean; wishlistAnimation: boolean };

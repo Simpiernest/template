@@ -3,5 +3,5 @@ import { MotionPage } from '@/components/MotionUI';
 import './globals.css';
 import { StoreProvider } from '@/context/Store';
 import { Header, Footer } from '@/components/StoreUI';
-export const metadata = { title: 'Another Vintage Store | Unofficial Storefront Preview', description: 'Independent vintage clothing storefront design preview for a Brooklyn retailer.', robots: { index: false, follow: false } };
+export const metadata = { title: 'RGR Family Thrift Store | Unofficial Storefront Preview', description: 'Independent vintage clothing storefront design preview for a retailer in Brooklyn, NY.', robots: { index: false, follow: false } };
 export default function RootLayout({children}:{children:React.ReactNode}) { return <html lang="en"><body><StoreProvider><Header/><MotionPage>{children}</MotionPage><Footer/></StoreProvider></body></html> }

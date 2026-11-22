@@ -23,10 +23,9 @@ export type Item = {
 };
 export const crop = (file: string, x: number, y: number, width: number, height: number, w = 1024, h = 1536): Crop => ({ file, x, y, width, height, w, h });
 const entries = [
-  { id: 'vintage-sweatshirt', name: 'Vintage Sweatshirt', category: 'apparel', price: 20, art: crop('catalog', 258, 715, 160, 104) },
-  { id: 'wristwatch', name: 'Wristwatch', category: 'watches', price: 25, art: crop('catalog', 643, 478, 160, 104) },
-  { id: 'retro-sneakers', name: 'Retro Sneakers', category: 'apparel', price: 30, art: crop('catalog', 835, 478, 160, 104) },
-  { id: 'leather-bag', name: 'Leather Bag', category: 'accessories', price: 35, art: crop('catalog', 450, 715, 160, 104) },
+  { id: 'pre-owned-sweatshirt', name: "Pre-owned sweatshirt", category: "secondhand apparel", price: 20, art: crop('catalog', 258, 715, 160, 104) },
+  { id: 'secondhand-sneakers', name: "Secondhand sneakers", category: "shoes", price: 29, art: crop('catalog', 835, 478, 160, 104) },
+  { id: 'vintage-jacket', name: "Vintage jacket", category: "jackets", price: 34, art: crop('catalog', 258, 715, 160, 104) },
 ];
 export const items: Item[] = entries.map(item => ({...item, old:item.price, rating:0, reviews:"0", description:"Illustrative listing. Actual prices and availability to be supplied by the retailer."}));
 export const categories = [...new Map(entries.map(item => [item.category, {id:item.category,name:item.category[0].toUpperCase()+item.category.slice(1),art:item.art}])).values()];

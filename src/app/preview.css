@@ -1,0 +1,29 @@
+.vintage { background:#f8f2e7; color:#271d1b; --green:#742838; }
+.vintage .preview-note { padding:.55rem 1rem; text-align:center; color:white; background:#3f232a; font-size:.82rem; }
+.vintage .preview-nav { height:auto; min-height:76px; flex-wrap:wrap; padding-top:1rem; padding-bottom:1rem; }
+.preview-nav nav { display:flex; gap:1.25rem; font-weight:700; }
+.vintage .logo { white-space:normal; font-family:Georgia,serif; font-size:clamp(1.35rem,4vw,1.9rem); }
+.vintage main { min-height:65vh; }
+.vintage h1,.vintage h2 { font-family:Georgia,serif; }
+.hero-preview { display:grid; grid-template-columns:1.2fr 1fr; align-items:stretch; gap:2rem; padding-top:2rem; }
+.hero-preview>div:first-child { padding:clamp(1.2rem,5vw,4rem) 0; }
+.hero-preview h1 { font-size:clamp(2.65rem,7.5vw,6.3rem); line-height:.97; margin:.75rem 0 1.2rem; }
+.hero-preview .btn,.prose-preview .btn { margin-top:1.3rem; }
+.location { font-weight:700; color:#742838; }
+.hero-pattern,.collection-art { display:grid; place-items:center; color:#f8e7bc; background:#742838; min-height:240px; }
+.hero-pattern { border-radius:120px 120px 12px 12px; background:repeating-linear-gradient(130deg,#742838 0 24px,#8a3845 24px 48px); }
+.collection { padding:2rem 0 3rem; }
+.collection p { margin:.5rem 0 1rem; }
+.preview-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.collection-card { display:block; background:#fffcf5; }
+.collection-card strong { display:block; padding:.9rem; }
+.collection-card .collection-art { min-height:150px; }
+.collection-card:nth-child(2) .collection-art { background:#415b49; }
+.collection-card:nth-child(3) .collection-art { background:#81511e; }
+.vintage .btn,.vintage footer { background:#3f232a; }
+.vintage .btn:hover { background:#742838; }
+.prose-preview p { margin:1rem 0; max-width:55ch; }
+.prose-preview .actions { flex-wrap:wrap; }
+.prose-preview .actions .btn { margin-top:0; }
+.vintage .product-detail { margin-top:1rem; }
+@media(max-width:600px) { .hero-preview { grid-template-columns:1fr; gap:1rem; } .hero-pattern { min-height:170px; } .preview-grid { grid-template-columns:1fr; } }
